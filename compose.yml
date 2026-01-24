@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # Management UI
+    environment:
+      RABBITMQ_DEFAULT_USER: app
+      RABBITMQ_DEFAULT_PASS: secret
+      RABBITMQ_DEFAULT_VHOST: /
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    external: true
+
